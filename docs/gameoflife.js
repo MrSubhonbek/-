@@ -244,7 +244,6 @@ var GameOfLife = (function () {
                 value: function _getCellFromCursorPosition(e) {
                     var left, top;
 
-                    // get coordinates of click on page
                     if (typeof e.pageX != "undefined" && typeof e.pageY != "undefined") {
                         left = e.pageX;
                         top = e.pageY;
@@ -259,7 +258,6 @@ var GameOfLife = (function () {
                             document.documentElement.scrollTop;
                     }
 
-                    // get coordinates relative to canvas
                     var canvas_offset = Helpers.getPosition(this.canvas);
                     left -= canvas_offset[0];
                     top -= canvas_offset[1];
@@ -271,7 +269,6 @@ var GameOfLife = (function () {
                         return false;
                     }
 
-                    // now calculate in which cell this click falls
                     return [
                         Math.floor(left / this.config.cell_size),
                         Math.floor(top / this.config.cell_size),
