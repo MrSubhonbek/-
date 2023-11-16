@@ -1,6 +1,6 @@
 "use strict";
 
-var _typeof =
+let _typeof =
     typeof Symbol === "function" && typeof Symbol.iterator === "symbol"
         ? function (obj) {
             return typeof obj;
@@ -11,10 +11,10 @@ var _typeof =
                 : typeof obj;
         };
 
-var _createClass = (function () {
+let _createClass = (function () {
     function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];
+        for (let i = 0; i < props.length; i++) {
+            let descriptor = props[i];
             descriptor.enumerable = descriptor.enumerable || false;
             descriptor.configurable = true;
             if ("value" in descriptor) descriptor.writable = true;
@@ -34,9 +34,8 @@ function _classCallCheck(instance, Constructor) {
     }
 }
 
-var GameOfLife = (function () {
-
-    var Helpers = (function () {
+let GameOfLife = (function () {
+    let Helpers = (function () {
         function Helpers() {
             _classCallCheck(this, Helpers);
         }
@@ -45,7 +44,7 @@ var GameOfLife = (function () {
             {
                 key: "getPosition",
                 value: function getPosition(element) {
-                    var left = 0,
+                    let left = 0,
                         top = 0;
 
                     if (element.offsetParent) {
@@ -69,14 +68,14 @@ var GameOfLife = (function () {
         return Helpers;
     })();
 
-    var State = (function () {
+    let State = (function () {
         class State {
             constructor(config) {
                 _classCallCheck(this, State);
 
                 this.config = config;
 
-                var col = this.config.num_cols,
+                let col = this.config.num_cols,
                     row;
 
                 this.cells = [];
@@ -105,7 +104,7 @@ var GameOfLife = (function () {
             {
                 key: "computeNextState",
                 value: function computeNextState() {
-                    var count = 0,
+                    let count = 0,
                         col,
                         row,
                         rowOffset,
@@ -171,7 +170,7 @@ var GameOfLife = (function () {
         return State;
     })();
 
-    var Canvas = (function () {
+    let Canvas = (function () {
         class Canvas {
             constructor(config, state) {
                 _classCallCheck(this, Canvas);
@@ -208,13 +207,13 @@ var GameOfLife = (function () {
                 );
 
                 // vertical lines
-                for (var x = 0; x <= this.canvas.width; x += this.config.cell_size) {
+                for (let x = 0; x <= this.canvas.width; x += this.config.cell_size) {
                     this.context.moveTo(0.5 + x, 0);
                     this.context.lineTo(0.5 + x, this.canvas.width);
                 }
 
                 // horizontal lines
-                for (var y = 0; y <= this.canvas.width; y += this.config.cell_size) {
+                for (let y = 0; y <= this.canvas.width; y += this.config.cell_size) {
                     this.context.moveTo(0, 0.5 + y);
                     this.context.lineTo(this.canvas.width, 0.5 + y);
                 }
@@ -228,13 +227,13 @@ var GameOfLife = (function () {
             {
                 key: "_handleClick",
                 value: function _handleClick(e) {
-                    var cell = this._getCellFromCursorPosition(e);
+                    let cell = this._getCellFromCursorPosition(e);
 
                     if (cell == false) {
                         return;
                     }
 
-                    var cellState = this.state.changeCell(cell[0], cell[1]);
+                    let cellState = this.state.changeCell(cell[0], cell[1]);
 
                     this._drawCell(cell[0], cell[1], cellState);
                 },
@@ -242,7 +241,7 @@ var GameOfLife = (function () {
             {
                 key: "_getCellFromCursorPosition",
                 value: function _getCellFromCursorPosition(e) {
-                    var left, top;
+                    let left, top;
 
                     if (typeof e.pageX != "undefined" && typeof e.pageY != "undefined") {
                         left = e.pageX;
@@ -258,7 +257,7 @@ var GameOfLife = (function () {
                             document.documentElement.scrollTop;
                     }
 
-                    var canvas_offset = Helpers.getPosition(this.canvas);
+                    let canvas_offset = Helpers.getPosition(this.canvas);
                     left -= canvas_offset[0];
                     top -= canvas_offset[1];
 
@@ -298,7 +297,7 @@ var GameOfLife = (function () {
         return Canvas;
     })();
 
-    var GameOfLife = (function () {
+    let GameOfLife = (function () {
         class GameOfLife {
             constructor(customConfig) {
                 _classCallCheck(this, GameOfLife);
@@ -326,9 +325,9 @@ var GameOfLife = (function () {
             {
                 key: "_buildConfig",
                 value: function _buildConfig(customConfig) {
-                    var i;
+                    let i;
 
-                    var config = this._defaults;
+                    let config = this._defaults;
 
                     if (
                         (typeof customConfig === "undefined"
@@ -354,7 +353,7 @@ var GameOfLife = (function () {
             {
                 key: "_setEventListeners",
                 value: function _setEventListeners() {
-                    var self = this;
+                    let self = this;
 
                     this.canvas.canvas.addEventListener(
                         "click",
@@ -368,8 +367,8 @@ var GameOfLife = (function () {
             {
                 key: "setState",
                 value: function setState(cells) {
-                    var i, cellState;
-
+                    let i, cellState;
+                    console.log(cells);
                     this.stop();
 
                     if (cells.length == 0) {
@@ -398,12 +397,12 @@ var GameOfLife = (function () {
                         return;
                     }
 
-                    var self = this,
+                    let self = this,
                         i,
                         cellState;
 
                     this._interval = setInterval(function () {
-                        var changes = self.state.computeNextState();
+                        let changes = self.state.computeNextState();
 
                         if (changes.length == 0) {
                             self.stop();
@@ -420,7 +419,7 @@ var GameOfLife = (function () {
             {
                 key: "step",
                 value: function step() {
-                    var changes, cellState, i;
+                    let changes, cellState, i;
 
                     this.stop();
 
@@ -441,6 +440,19 @@ var GameOfLife = (function () {
                 value: function stop() {
                     clearInterval(this._interval);
                     this._interval = null;
+                },
+            },
+            {
+                key: "setRandomPoint",
+                value: function setRandomPoint() {
+                    let cellState;
+                    for (let i = 0; i < this.config.num_cols; i++)
+                        for (let j = 0; j < this.config.num_rows; j++) {
+                            if (Math.random() > 0.5) {
+                                cellState = this.state.changeCell(i, j);
+                                this.canvas._drawCell(i, j, cellState);
+                            }
+                        }
                 },
             },
         ]);

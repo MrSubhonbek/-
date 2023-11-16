@@ -42,12 +42,12 @@
       <div class="row">
         <div class="col-xs-12">
           Controls:
-          <button class="btn btn-primary game1_start" role="button">
+          <button class="btn btn-primary start" role="button">
             Start
           </button>
-          <button class="btn btn-primary game1_stop" role="button">Stop</button>
-          <button class="btn btn-primary game1_step" role="button">Step</button>
-          <button class="btn btn-primary game1_reset" role="button">
+          <button class="btn btn-primary stop" role="button">Stop</button>
+          <button class="btn btn-primary step" role="button">Step</button>
+          <button class="btn btn-primary reset" role="button">
             Reset
           </button>
         </div>
@@ -59,23 +59,10 @@
 
       <div class="row">
         <div class="col-xs-12">
-          Patterns:
-          <button class="btn btn-info" role="button">
+          Fill:
+          <button class="btn btn-info setRandomPoint" role="button">
             Random
           </button>
-          <button class="btn btn-info game1_blinker" role="button">
-            Blinker
-          </button>
-          <button class="btn btn-info game1_glider" role="button">
-            Glider
-          </button>
-          <button class="btn btn-info game1_pentadecathlon" role="button">
-            Pentadecathlon
-          </button>
-          <button class="btn btn-info game1_gostersGliderGun" role="button">
-            Gosper's glider gun
-          </button>
-          <button class="btn btn-info game1_acorn" role="button">Acorn</button>
         </div>
       </div>
       <div class="row">
@@ -104,19 +91,22 @@
           update_interval: 50,
         });
 
-        $(".game1_start").click(function () {
+        $(".start").click(function () {
           BigGame.start();
         });
-        $(".game1_stop").click(function () {
+        $(".stop").click(function () {
           BigGame.stop();
         });
-        $(".game1_step").click(function () {
+        $(".step").click(function () {
           BigGame.step();
         });
-        $(".game1_reset").click(function () {
+        $(".reset").click(function () {
           BigGame.reset();
         });
-        $('.game1_blinker').click(function() {
+        $(".setRandomPoint").click(function () {
+          BigGame.setRandomPoint();
+        });
+        $('.blinker').click(function() {
             BigGame.setState([
                 {col: 2, row: 1},
                 {col: 2, row: 2},
@@ -124,7 +114,7 @@
             ]);
         });
 
-        $('.game1_glider').click(function() {
+        $('.glider').click(function() {
             BigGame.setState([
                 {col: 6, row: 3},
                 {col: 7, row: 1},
@@ -134,7 +124,7 @@
             ]);
         });
 
-        $('.game1_pentadecathlon').click(function() {
+        $('.pentadecathlon').click(function() {
             BigGame.setState([
                 {col: 23, row: 5},
                 {col: 23, row: 10},
@@ -151,7 +141,7 @@
             ]);
         });
 
-        $('.game1_gostersGliderGun').click(function() {
+        $('.gostersGliderGun').click(function() {
             BigGame.setState([
                 {col: 1, row: 31},
                 {col: 1, row: 32},
@@ -192,7 +182,7 @@
             ]);
         });
 
-        $('.game1_acorn').click(function() {
+        $('.acorn').click(function() {
             BigGame.setState([
                 {col: 35, row: 22},
                 {col: 36, row: 20},
