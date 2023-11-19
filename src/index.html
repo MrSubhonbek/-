@@ -1,112 +1,117 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Game of Life</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous" />
+<head>
+  <title>Game of Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-  </head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
 
-  <body>
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-xs-12">&nbsp;</div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-xs-12">
+        <canvas id="gameoflife_canvas">
+          <p class="notification text-danger">
+            Sorry, your browser cannot display this content. Try updating your
+            browser or
+            <a href="http://web-browsers.findthebest.com/" target="_blank">use a different browser</a>.
+          </p>
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">&nbsp;</div>
+  </div>
+
+  <div class="container controls">
+    <div class="row">
+      <div class="col-xs-12">
+        Controls:
+        <button class="btn btn-primary start" role="button">
+          Start
+        </button>
+        <button class="btn btn-primary stop" role="button">Stop</button>
+        <button class="btn btn-primary step" role="button">Step</button>
+        <button class="btn btn-primary reset" role="button">
+          Reset
+        </button>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-xs-12">&nbsp;</div>
     </div>
-    <div>
-      <div class="row">
-        <div class="col-xs-12">
-          <canvas id="gameoflife_canvas">
-            <p class="notification text-danger">
-              Sorry, your browser cannot display this content. Try updating your
-              browser or
-              <a href="http://web-browsers.findthebest.com/" target="_blank"
-                >use a different browser</a
-              >.
-            </p>
-          </canvas>
-        </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        Fill:
+        <button class="btn btn-info setRandomPoint" role="button">
+          Random
+        </button>
       </div>
     </div>
-
     <div class="row">
       <div class="col-xs-12">&nbsp;</div>
     </div>
-
-    <div class="container controls">
-      <div class="row">
-        <div class="col-xs-12">
-          Controls:
-          <button class="btn btn-primary start" role="button">
-            Start
-          </button>
-          <button class="btn btn-primary stop" role="button">Stop</button>
-          <button class="btn btn-primary step" role="button">Step</button>
-          <button class="btn btn-primary reset" role="button">
-            Reset
-          </button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">&nbsp;</div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          Fill:
-          <button class="btn btn-info setRandomPoint" role="button">
-            Random
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">&nbsp;</div>
-      </div>
-      <div class="d-flex gap-2 mt-2 align-items-center">
-        <label for="col" class="text-center">Col</label>
-        <input type="number" id="col" />
-        <label for="row">Row</label>
-        <input type="number" id="row" />
-        <button class="btn btn-primary" role="button">Save</button>
-      </div>
+    <div class="d-flex gap-2 mt-2 align-items-center">
+      <label for="col" class="text-center">Col</label>
+      <input type="number" id="col" />
+      <label for="row">Row</label>
+      <input type="number" id="row" />
+      <button class="btn btn-primary setSize" role="button">Save</button>
     </div>
+  </div>
 
-    <script src="gameoflife.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        var BigGame = new GameOfLife({
-          canvas_id: "gameoflife_canvas",
-          num_cols: 100,
-          num_rows: 50,
-          cell_size: 10,
-          color_lines: "#cccccc",
-          color_cell_dead: "#ffffff",
-          color_cell_alive: "#57A0DB",
-          update_interval: 50,
-        });
-
-        $(".start").click(function () {
-          BigGame.start();
-        });
-        $(".stop").click(function () {
-          BigGame.stop();
-        });
-        $(".step").click(function () {
-          BigGame.step();
-        });
-        $(".reset").click(function () {
-          BigGame.reset();
-        });
-        $(".setRandomPoint").click(function () {
-          BigGame.setRandomPoint();
-        });
+  <script src="gameoflife.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      let BigGame = new GameOfLife({
+        canvas_id: "gameoflife_canvas",
+        num_cols: 100,
+        num_rows: 50,
+        cell_size: 10,
+        color_lines: "#cccccc",
+        color_cell_dead: "#ffffff",
+        color_cell_alive: "#57A0DB",
+        update_interval: 50,
       });
-    </script>
-  </body>
+
+      $(".start").click(function () {
+        BigGame.start();
+      });
+      $(".stop").click(function () {
+        BigGame.stop();
+      });
+      $(".step").click(function () {
+        BigGame.step();
+      });
+      $(".reset").click(function () {
+        BigGame.reset();
+      });
+      $(".setRandomPoint").click(function () {
+        BigGame.setRandomPoint();
+      });
+      $(".setSize").click(function () {
+        let row = document.getElementById("row").value, col = document.getElementById("col").value
+        let BigGame = new GameOfLife({
+          canvas_id: "gameoflife_canvas",
+          num_cols: col,
+          num_rows: row,
+        })
+      });
+    });
+  </script>
+</body>
+
 </html>
