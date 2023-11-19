@@ -454,7 +454,7 @@ let GameOfLife = (function () {
                             }
                         }
                 },
-            }
+            },
         ]);
 
         return GameOfLife;

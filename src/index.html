@@ -66,20 +66,21 @@
     </div>
     <div class="d-flex gap-2 mt-2 align-items-center">
       <label for="col" class="text-center">Col</label>
-      <input type="number" id="col" />
+      <input type="number" id="col" value="100" />
       <label for="row">Row</label>
-      <input type="number" id="row" />
-      <button class="btn btn-primary setSize" role="button">Save</button>
+      <input type="number" id="row" value="50" />
+      <button class="btn btn-primary saveSize" role="button">Save</button>
     </div>
   </div>
 
   <script src="gameoflife.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
+      let row = document.getElementById("row").value, col = document.getElementById("col").value
       let BigGame = new GameOfLife({
         canvas_id: "gameoflife_canvas",
-        num_cols: 100,
-        num_rows: 50,
+        num_cols: col,
+        num_rows: row,
         cell_size: 10,
         color_lines: "#cccccc",
         color_cell_dead: "#ffffff",
@@ -102,13 +103,8 @@
       $(".setRandomPoint").click(function () {
         BigGame.setRandomPoint();
       });
-      $(".setSize").click(function () {
-        let row = document.getElementById("row").value, col = document.getElementById("col").value
-        let BigGame = new GameOfLife({
-          canvas_id: "gameoflife_canvas",
-          num_cols: col,
-          num_rows: row,
-        })
+      $(".saveSize").click(function () {
+        location.reload()
       });
     });
   </script>
